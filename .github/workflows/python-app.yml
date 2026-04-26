@@ -23,7 +23,7 @@ jobs:
 
             - name: Ejecutar pruebas y artefacto
               run: | 
-                pytest test/test_descuento.py --html=reporte_pruebas.html --self-contained-html
+                python -m pytest test/test_descuento.py --html=reporte_pruebas.html --self-contained-html
 
             - name: Guardar reporte de pruebas
               uses: actions/upload-artifact@v4
