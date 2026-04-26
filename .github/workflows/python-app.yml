@@ -8,7 +8,7 @@ jobs:
         
         steps:
             - name: Descargar el repo
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             # config entorno
             - name: Configurar python
@@ -26,7 +26,7 @@ jobs:
                 pytest test/test_descuento.py --html=reporte_pruebas.html --self-contained-html
 
             - name: Guardar reporte de pruebas
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               if: always()
               with:
                 name: reporte-pytest
