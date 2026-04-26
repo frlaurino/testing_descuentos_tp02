@@ -1,0 +1,35 @@
+on:
+    push:
+        branches: ["main", "master"]
+        
+jobs:
+    build-and-test:
+        runs-on: ubuntu-latest
+        
+        steps:
+            - name: Descargar el repo
+              uses: actions/checkout@v3
+
+            # config entorno
+            - name: Configurar python
+              uses: actions/setup-python@v4
+              with:
+                python-version: "3.12"
+
+            - name: Instalar dependencias
+              run: |
+               python -m pip install --upgrade pip
+               pip install pytest pytest-html
+
+            - name: Ejecutar pruebas y artefacto
+              run: | 
+                pytest test/test_descuento.py --html=reporte_pruebas.html --self-contained-html
+
+            - name: Guardar reporte de pruebas
+              uses: actions/upload-artifact@v3
+              if: always()
+              with:
+                name: reporte-pytest
+                path: reporte_pruebas.html
+
+                

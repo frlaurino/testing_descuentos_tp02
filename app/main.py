@@ -6,7 +6,9 @@ def main():
         print("Sistema de descuentos")
         try:
             edad = int(input("Ingrese su edad: "))
-            precio = float(abs(input("Ingrese el precio: ")))
+            precio = float(input("Ingrese el precio: "))
+            if edad < 0 or precio < 0:
+                raise ValueError
         except ValueError:
             print("Datos invalidos. Ingresa numeros positivos")
             continue
